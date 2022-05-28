@@ -32,3 +32,12 @@ Once you installed all npm packages, you're ready to run it on localhost or SP
 ```bash
 npm run serve
 ```
+
+## Rules of expression
+
+Once you start the project, you ned to know the success expression:
+- all brackets should be closed;
+- body in the brackets should not be empty;
+- between variables and brackets should be operator;
+- between variables should be operator;
+- operator should not be the first and last element of expression.

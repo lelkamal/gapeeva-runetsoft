@@ -1,20 +1,32 @@
 export function validateBrackets(expression: (string | number)[], brackets: string[]): boolean {
   const validation: string[] = [];
+  let validate = true;
+
+  expression.every((exp, index) => {
+    const previousValue = expression[index - 1];
+
+    if ((exp === ")" && previousValue === "(") || (exp === "(" && previousValue === ")")) {
+      validate = false;
+      return false;
+    }
+
+    return true;
+  });
 
   const findBrackets = expression.filter((e) => brackets.includes(e as string));
 
   if (findBrackets.length === 0) return true;
   if (findBrackets[0] === ")") return false;
 
-  findBrackets.forEach((bracket, index) => {
+  findBrackets.forEach((bracket) => {
     if (bracket === "(") validation.push(bracket as string);
     else {
-      if (validation[index - 1] === "(") validation.pop();
+      if (validation[validation.length - 1] === "(") validation.pop();
       else validation.push(bracket as string);
     }
   });
 
-  return validation.length === 0;
+  return validation.length === 0 && validate;
 }
 
 export function validateVariables(expression: (string | number)[], variables: string[]): boolean {
